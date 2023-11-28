@@ -41,3 +41,5 @@ E:\Backend_class\Githubrepositories\OnlinShopapi\bin\Debug\net7.0\Mono.TextTempl
 E:\Backend_class\Githubrepositories\OnlinShopapi\bin\Debug\net7.0\MySqlConnector.dll
 E:\Backend_class\Githubrepositories\OnlinShopapi\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
 E:\Backend_class\Githubrepositories\OnlinShopapi\bin\Debug\net7.0\System.CodeDom.dll
+E:\Backend_class\Githubrepositories\OnlinShopapi\bin\Debug\net7.0\AutoMapper.dll
+E:\Backend_class\Githubrepositories\OnlinShopapi\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

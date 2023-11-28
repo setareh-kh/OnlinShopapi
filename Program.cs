@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program));
 var connectionstr= builder.Configuration.GetConnectionString("MyConnection");
 builder.Services.AddDbContext<OnlinShopContext>(options => options.UseMySql(connectionstr,ServerVersion.AutoDetect(connectionstr)));
 builder.Services.AddScoped<IProductRepository,ProductRepository>();

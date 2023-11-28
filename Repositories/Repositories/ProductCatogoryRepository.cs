@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using  OnlineShopapi.Dtos.Requests;
 using OnlineShopapi.Models;
@@ -6,17 +7,15 @@ namespace OnlineShopapi.Repositories.Repositories
     public class ProductCatogoryRepository:IProductCatogoryRepository
     {
         private readonly OnlinShopContext _onlinShopContext;
-        public ProductCatogoryRepository(OnlinShopContext  onlinShopContext)
+        private IMapper _mapper;
+        public ProductCatogoryRepository(OnlinShopContext  onlinShopContext,IMapper mapper)
         {
             _onlinShopContext =  onlinShopContext;
+            _mapper=mapper;
         }
         public async Task<ProductCatogory?> AddCatogoryAsync(AddCatogoryDto addCatogoryDto)
         {
-            ProductCatogory productCatogory = new ProductCatogory()
-            {
-                Name = addCatogoryDto.Name,
-                Description = addCatogoryDto.Description
-            };
+            ProductCatogory productCatogory = _mapper.Map<ProductCatogory>(addCatogoryDto);
             await  _onlinShopContext.ProductCatogories.AddAsync(productCatogory);
             await  _onlinShopContext.SaveChangesAsync();
             return productCatogory;

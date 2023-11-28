@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using  OnlineShopapi.Dtos.Requests;
 using OnlineShopapi.Models;
@@ -7,25 +8,18 @@ namespace OnlineShopapi.Repositories.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly OnlinShopContext _onlinShopContext;
+        private IMapper _mapper;
         //public bool isLogin = false;
         public Customer? currentCustomer;
-        public CustomerRepository(OnlinShopContext onlinShopContext)
+        public CustomerRepository(OnlinShopContext onlinShopContext, IMapper mapper)
         {
             _onlinShopContext = onlinShopContext;
+            _mapper=mapper;
         }
         public async Task<Customer> AddCustomerAsync(AddCustomerDto addCustomerDto)
         {
-            var c = new Customer()
-            {
-                FirstName = addCustomerDto.FirstName,
-                LastName = addCustomerDto.LastName,
-                Mobile = addCustomerDto.Mobile,
-                Passworrd = addCustomerDto.Passworrd,
-                Emaile = addCustomerDto.Emaile,
-                Address1 = addCustomerDto.Address1,
-                Address2 = addCustomerDto.Address2,
-                RegisterDate = DateTime.Now
-            };
+            var c = _mapper.Map<Customer>(addCustomerDto);
+            c.RegisterDate = DateTime.Now;
             await  _onlinShopContext.Customers.AddAsync(c);
             await  _onlinShopContext.SaveChangesAsync();
             return c;
@@ -45,12 +39,7 @@ namespace OnlineShopapi.Repositories.Repositories
             Customer? customer = await  _onlinShopContext.Customers.FindAsync(id);
             if (customer != null)
             {
-                customer.FirstName = updateCustomerDto.FirstName;
-                customer.LastName = updateCustomerDto.LastName;
-                customer.Passworrd = updateCustomerDto.Passworrd;
-                customer.Emaile = updateCustomerDto.Emaile;
-                customer.Address1 = updateCustomerDto.Address1;
-                customer.Address2 = updateCustomerDto.Address2;
+                _mapper.Map(updateCustomerDto,customer);
                 await  _onlinShopContext.SaveChangesAsync();
                 return customer;
             }

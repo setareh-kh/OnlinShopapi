@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using OnlineShopapi.Dtos.Requests;
 using OnlineShopapi.Models;
@@ -7,19 +8,16 @@ namespace OnlineShopapi.Repositories.Repositories
     public class ProductRepository : IProductRepository
     {
         private readonly OnlinShopContext _onlinShopContext;
-        public ProductRepository(OnlinShopContext onlinShopContext)
+        private IMapper _mapper;
+        public ProductRepository(OnlinShopContext onlinShopContext,IMapper mapper)
         {
             _onlinShopContext = onlinShopContext;
+            _mapper=mapper;
         }
         public async Task<Product?> AddProductAsync(AddProductDto addProductDto)
         {
-            var product = new Product()
-            {
-                Name = addProductDto.Name,
-                CatogoryId = addProductDto.CatogoryId,
-                QuantityStock = addProductDto.Quantity,
-                RegisterDate = DateTime.Now
-            };
+            var product = _mapper.Map<Product>(addProductDto);
+            product.RegisterDate=DateTime.Now;
             await _onlinShopContext.Products.AddAsync(product);
             await _onlinShopContext.SaveChangesAsync();
             return product;
@@ -48,8 +46,7 @@ namespace OnlineShopapi.Repositories.Repositories
             Product? product = await _onlinShopContext.Products.SingleOrDefaultAsync(p => p.Id.Equals(id));
             if (product != null)
             {
-                product.Name = updateProductDto.Name;
-                product.QuantityStock = updateProductDto.Quantity;
+                _mapper.Map(updateProductDto,product);
                 product.UpdateDate = DateTime.Now;
                 await _onlinShopContext.SaveChangesAsync();
                 return product;
