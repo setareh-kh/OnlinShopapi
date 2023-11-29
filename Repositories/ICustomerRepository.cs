@@ -1,4 +1,5 @@
 using  OnlineShopapi.Dtos.Requests;
+using OnlineShopapi.Dtos.Responses;
 using OnlineShopapi.Models;
 
 namespace OnlineShopapi.Repositories
@@ -10,31 +11,31 @@ namespace OnlineShopapi.Repositories
         /// </summary>
         /// <param name="addCustomerDto"></param>
         /// <returns>Customer</returns>
-        Task<Customer> AddCustomerAsync(AddCustomerDto addCustomerDto);
+        Task<CustomerResponseDto> AddCustomerAsync(AddCustomerDto addCustomerDto);
         /// <summary>
         /// To Get Customer By Id You can this function 
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Customer?</returns>
-        Task<Customer?> GetCustomerAsync(int id);
+        Task<CustomerResponseDto?> GetCustomerAsync(int id);
         /// <summary>
         /// To read all Customer You can this function
         /// </summary>
         /// <returns>ListCustomer</returns>
-        Task<List<Customer>?> GetAllCustomerAsync();
+        Task<List<CustomerResponseDto>?> GetAllCustomerAsync();
         /// <summary>
         /// To Update Customer Personality You can this function
         /// </summary>
         /// <param name="id"></param>
         /// <param name="updateCustomerDto"></param>
         /// <returns>Customer?</returns>
-        Task<Customer?> UpdateCustomerAsync(int id, UpdateCustomerDto updateCustomerDto);
+        Task<CustomerResponseDto?> UpdateCustomerAsync(int id, UpdateCustomerDto updateCustomerDto);
         /// <summary>
         /// To Delete Customer by Id You can this function
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Customer?</returns>
-        Task<Customer?> DeleteCustomerAsync(int id);
+        Task<CustomerResponseDto?> DeleteCustomerAsync(int id);
         /// <summary>
         /// To Login Customer You can this function
         /// </summary>

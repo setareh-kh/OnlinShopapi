@@ -1,6 +1,7 @@
 using OnlineShopapi.Models;
 using OnlineShopapi.Repositories.Repositories;
 using  OnlineShopapi.Dtos.Requests;
+using OnlineShopapi.Dtos.Responses;
 
 namespace OnlineShopapi.Repositories
 {
@@ -11,18 +12,18 @@ namespace OnlineShopapi.Repositories
         /// </summary>
         /// <param name="addProductDto"></param>
         /// <returns>product</returns>
-        Task<Product?> AddProductAsync(AddProductDto addProductDto);
+        Task<ProductResponseDto?> AddProductAsync(AddProductDto addProductDto);
         /// <summary>
         /// to get product by id you can this function
         /// </summary>
         /// <param name="id"></param>
         /// <returns>product</returns>
-        Task<Product?> GetProductAsync(int id);
+        Task<ProductResponseDto?> GetProductAsync(int id);
         /// <summary>
         /// to read all product you can this function
         /// </summary>
         /// <returns>list of Product</returns>
-        Task<List<Product>?> GetAllProductAsync();
+        Task<List<ProductResponseDto>?> GetAllProductAsync();
         /// <summary>
         /// Filter product by CatogoryId you can this function
         /// </summary>
@@ -35,12 +36,12 @@ namespace OnlineShopapi.Repositories
         /// <param name="id"></param>
         /// <param name="updateProductDto"></param>
         /// <returns>product</returns>
-        Task<Product?> UpdateProductAsync(int id, UpdateProductDto updateProductDto);
+        Task<ProductResponseDto?> UpdateProductAsync(int id, UpdateProductDto updateProductDto);
         /// <summary>
         /// to remove product by id you can this function
         /// </summary>
         /// <param name="id"></param>
         /// <returns>product</returns>
-        Task<Product?> RemoveProductAsync(int id);
+        Task<ProductResponseDto?> RemoveProductAsync(int id);
     }
 }

@@ -12,6 +12,7 @@ namespace OnlineShopapi.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IProductCatogoryRepository _catogoryRepository;
+        
 
         public ProductController(IProductRepository productRepository, IProductCatogoryRepository catogoryRepository)
         {
@@ -22,14 +23,14 @@ namespace OnlineShopapi.Controllers
         [Route("Add")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductDto addProductDto)
         {
-            Product? p = await _productRepository.AddProductAsync(addProductDto);
+            var p = await _productRepository.AddProductAsync(addProductDto);
             return Ok($"{p!.Name} with {p!.Id} is registered");
         }
         [HttpGet]
         [Route("Get/{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
-            Product? p = await _productRepository.GetProductAsync(id);
+            var p = await _productRepository.GetProductAsync(id);
             return Ok(p!=null ? p:"productId not found!!!!!");
 
         }
@@ -45,7 +46,7 @@ namespace OnlineShopapi.Controllers
         [Route("GetAll")]
         public async Task<IActionResult> GetAllProduct()
         {
-            List<Product>? p = await _productRepository.GetAllProductAsync();
+            var p = await _productRepository.GetAllProductAsync();
             return Ok(p!=null ? p:"productId not found!!!!!");
 
         }
@@ -53,7 +54,7 @@ namespace OnlineShopapi.Controllers
         [Route("Update/{id}")]
         public async Task<IActionResult> UpdateProduct(int id,[FromBody] UpdateProductDto updateProductDto)
         {
-            Product? p=await _productRepository.UpdateProductAsync(id,updateProductDto);
+            var p=await _productRepository.UpdateProductAsync(id,updateProductDto);
             return Ok(p!=null ?$"{p!.Id} updated successfully":"productId not found!!!!!");
 
         }
@@ -61,7 +62,7 @@ namespace OnlineShopapi.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> RemoveProduct(int id)
         {
-            Product? p=await _productRepository.RemoveProductAsync(id);
+            var p=await _productRepository.RemoveProductAsync(id);
             return Ok(p!=null ? $"{p!.Name} was Removed":"productId not found!!!!!");
 
         }
